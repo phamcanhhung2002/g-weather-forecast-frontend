@@ -1,0 +1,23 @@
+body {
+    background-color: #e3f2fd;
+}
+
+h1,
+h4 {
+    font-weight: 600;
+}
+
+.divider {
+    font-size: var(--font-size-base);
+    display: flex;
+    align-items: center;
+}
+
+.divider::before,
+.divider::after {
+    flex: 1;
+    content: '';
+    padding: 1px;
+    background-color: #ced4da;
+    margin: 5px;
+}
