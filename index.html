@@ -10,117 +10,137 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="text-white">
     <header class="text-center bg-primary py-2">
       <h1>Weather Dashboard</h1>
     </header>
-    <main class="container p-5">
-      <div class="row">
-        <section class="col-4">
-          <label class="form-label fw-bold text-black" for="q"
-            >Enter a city name</label
-          >
-          <div class="d-flex flex-column gap-3">
-            <input
-              id="q"
-              type="text"
-              placeholder="E.g., New York, London, Tokyo"
-              class="form-control rounded-1"
-            />
-            <button
-              type="button"
-              class="btn btn-primary w-100 rounded-1"
-              onclick="getWeatherForecast(4, 'search-btn')"
-              id="search-btn"
-            >
-              <span class="spinner-border-sm" aria-hidden="true"></span>
-              <span role="status">Search</span>
-            </button>
-            <div class="divider text-black">or</div>
-            <button
-              type="button"
-              class="btn btn-secondary w-100 rounded-1"
-              id="use-location-btn"
-              onclick="getWeatherByLocation(4,'use-location-btn')"
-            >
-              <span class="spinner-border-sm" aria-hidden="true"></span>
-              <span role="status"> Use Current Location</span>
-            </button>
+    <main class="p-lg-5 p-sm-4 p-2">
+      <div class="container-xl">
+        <div class="row">
+          <div class="col-md-4">
+            <section class="mb-2">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-6 col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label fw-bold text-black" for="q"
+                        >Enter a city name</label
+                      >
+                      <div class="d-flex flex-column gap-3">
+                        <input
+                          id="q"
+                          type="text"
+                          placeholder="E.g., New York, London, Tokyo"
+                          class="form-control rounded-1"
+                        />
+                        <button
+                          type="button"
+                          class="btn btn-primary w-100 rounded-1"
+                          onclick="getWeatherForecast(4, 'search-btn')"
+                          id="search-btn"
+                        >
+                          <span
+                            class="spinner-border-sm"
+                            aria-hidden="true"
+                          ></span>
+                          <span role="status">Search</span>
+                        </button>
+                        <div class="divider text-black">or</div>
+                        <button
+                          type="button"
+                          class="btn btn-secondary w-100 rounded-1"
+                          id="use-location-btn"
+                          onclick="getWeatherByLocation(4,'use-location-btn')"
+                        >
+                          <span
+                            class="spinner-border-sm"
+                            aria-hidden="true"
+                          ></span>
+                          <span role="status"> Use Current Location</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-12">
+                    <label class="form-label fw-bold text-black" for="email"
+                      >Enter your email and location to receive daily weather
+                      forecast:</label
+                    >
+                    <div class="d-flex flex-column gap-3">
+                      <input
+                        id="email"
+                        type="text"
+                        class="form-control rounded-1"
+                        placeholder="Email"
+                      />
+                      <input
+                        id="location"
+                        type="text"
+                        class="form-control rounded-1"
+                        placeholder="Location"
+                      />
+                      <button
+                        class="btn btn-primary rounded-1"
+                        type="button"
+                        id="subscribe-btn"
+                        onclick="sendConfirmEmail()"
+                      >
+                        <span
+                          class="spinner-border-sm"
+                          aria-hidden="true"
+                        ></span>
+                        <span role="status">Subcribe</span>
+                      </button>
+                      <div class="divider text-black">or</div>
+                      <button
+                        type="button"
+                        class="btn btn-secondary w-100 rounded-1"
+                        id="unsubscribe-btn"
+                        onclick="unsubscribeEmail()"
+                      >
+                        Unsubscribe
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
-          <div class="mt-4">
-            <label class="form-label text-black" for="email"
-              >Enter your email and location to receive daily weather
-              forecast:</label
-            >
-            <div class="d-flex flex-column gap-3">
-              <input
-                id="email"
-                type="text"
-                class="form-control rounded-1"
-                placeholder="Email"
-              />
-              <input
-                id="location"
-                type="text"
-                class="form-control rounded-1"
-                placeholder="Location"
-              />
-              <button
-                class="btn btn-primary rounded-1"
-                type="button"
-                id="subscribe-btn"
-                onclick="sendConfirmEmail()"
+          <div class="col-md-8">
+            <section class="d-flex flex-column gap-3">
+              <div
+                class="p-3 bg-primary d-flex flex-row justify-content-between rounded-1"
               >
-                <span class="spinner-border-sm" aria-hidden="true"></span>
-                <span role="status">Subcribe</span>
-              </button>
-              <div class="divider text-black">or</div>
-              <button
-                type="button"
-                class="btn btn-secondary w-100 rounded-1"
-                id="unsubscribe-btn"
-                onclick="unsubscribeEmail()"
-              >
-                Unsubscribe
-              </button>
-            </div>
+                <div>
+                  <h4 id="city-and-date">City Name(Date)</h4>
+                  <p>Temperature: <span id="temperature">--</span>&deg;C</p>
+                  <p>Wind: <span id="wind">--</span>&nbsp;M/S</p>
+                  <p>Humidity: <span id="humid">--</span>%</p>
+                </div>
+                <div
+                  class="condition d-flex flex-column justify-content-center align-items-center me-4"
+                >
+                  <img
+                    id="condition-icon"
+                    src="//cdn.weatherapi.com/weather/64x64/day/296.png"
+                    alt="light rain"
+                    width="100px"
+                    height="100px"
+                  />
+                  <p id="condition" class="text-center">Light rain</p>
+                </div>
+              </div>
+              <h4 class="text-black">
+                <span id="num-forecast-dates">0</span>-Day Forecast
+              </h4>
+              <div class="container-fluid">
+                <div class="row g-3" id="forecast"></div>
+              </div>
+            </section>
           </div>
-        </section>
-        <section class="col-8 d-flex flex-column gap-3">
-          <div
-            class="p-3 bg-primary d-flex flex-row justify-content-between rounded-1"
-          >
-            <div>
-              <h4 id="city-and-date">City Name(Date)</h4>
-              <p>Temperature: <span id="temperature">--</span>&deg;C</p>
-              <p>Wind: <span id="wind">--</span>&nbsp;M/S</p>
-              <p>Humidity: <span id="humid">--</span>%</p>
-            </div>
-            <div
-              class="condition d-flex flex-column justify-content-center align-items-center me-4"
-            >
-              <img
-                id="condition-icon"
-                src="//cdn.weatherapi.com/weather/64x64/day/296.png"
-                alt="light rain"
-                width="100px"
-                height="100px"
-              />
-              <p id="condition" class="text-center">Light rain</p>
-            </div>
-          </div>
-          <h4 class="text-black">
-            <span id="num-forecast-dates">0</span>-Day Forecast
-          </h4>
-          <div class="row g-3" id="forecast"></div>
-        </section>
+        </div>
       </div>
     </main>
     <div class="toast-container position-fixed bottom-0 end-0 p-3 text-black">
@@ -143,6 +163,11 @@
       </div>
     </div>
   </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
   <script src="env.js"></script>
   <script src="loading.js"></script>
   <script src="toast.js"></script>

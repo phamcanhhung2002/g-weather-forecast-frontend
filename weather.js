@@ -53,7 +53,7 @@ function getForecastDateMarkdown(forecastdate) {
   const { avgtemp_c, maxwind_kph, avghumidity, condition } = day;
   const { icon, text } = condition;
 
-  return `<div class="col-3">
+  return `<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
             <div class="bg-secondary rounded-1 p-3">
               <p class="fw-bold">(${formatDate(date_epoch)})</p>
               <img
@@ -98,9 +98,9 @@ function setForecastWeather(forecast, q) {
   }
 
   const addMoreBtn = parseHTML(
-    `<button type="button" class="btn btn-outline-secondary" onclick="getWeather(${newNumOfForecastDates}, 'load-more-btn', '${q}')" id="load-more-btn">
+    `<div class="d-flex justify-content-end"><button type="button" class="btn btn-outline-secondary mt-3" onclick="getWeather(${newNumOfForecastDates}, 'load-more-btn', '${q}')" id="load-more-btn">
     <span class="spinner-border-sm" aria-hidden="true"></span>
-  <span role="status">Loading More</span></button>`
+  <span role="status">Loading More</span></button></div>`
   );
 
   forecastNode.after(addMoreBtn);
