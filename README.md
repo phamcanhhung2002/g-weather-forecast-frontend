@@ -4,4 +4,4 @@
 
 ## Setup
 
-This is a static web page show we don't need to install any thing. Just change returned value of function `getApiBaseUrl` in file **env.js** to your backend's base url.
+This is a static web page so we don't need to install any thing. Just change returned value of function `getApiBaseUrl` in file **env.js** to your backend's base url.
